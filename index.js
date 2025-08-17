@@ -5,7 +5,9 @@ import admin from 'firebase-admin';
 import fs from 'fs';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
-const serviceAccount = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'firebase-service-key.json'), 'utf-8'));
+const serviceAccount = JSON.parse(
+  Buffer.from(process.env.FIREBASE_SERVICE_KEY_B64, "base64").toString("utf-8")
+);
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -167,6 +169,6 @@ app.post('/admin-login', async (req, res) => {
 });
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
 });
