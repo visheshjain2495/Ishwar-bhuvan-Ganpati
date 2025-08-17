@@ -73,3 +73,5 @@ public/uploads/
 views/**/*.cache
 
 firebase-service-key.json
+
+deploy.sh
