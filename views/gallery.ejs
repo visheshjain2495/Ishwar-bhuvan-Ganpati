@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Memories Gallery</title>
+  <link rel="stylesheet" href="/public/css/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #d4a1ff, #a1c4fd);
+      text-align: center;
+    }
+    h1 {
+      background: purple;
+      color: white;
+      padding: 20px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 30px;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      padding: 15px;
+    }
+    .card img, .card video {
+      width: 100%;
+      border-radius: 10px;
+    }
+    button {
+      margin: 20px;
+      padding: 10px 20px;
+      background: green;
+      color: white;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: darkgreen;
+    }
+  </style>
+</head>
+<body>
+  <h1>📸 Our Memories Gallery 🎥</h1>
+
+  <div class="gallery">
+    <!-- Photos -->
+    <div class="card">
+      <img src="/images/photo1.jpeg" alt="Photo 1">
+      <p>Photo 1</p>
+    </div>
+    <div class="card">
+      <img src="/images/photo2.jpeg" alt="Photo 2">
+      <p>Photo 2</p>
+    </div>
+
+    <!-- Videos -->
+    <div class="card">
+      <video controls>
+        <source src="/videos/video1.mp4" type="video/mp4">
+      </video>
+      <p>Video 1</p>
+    </div>
+    <div class="card">
+      <video controls>
+        <source src="/videos/video2.mp4" type="video/mp4">
+      </video>
+      <p>Video 2</p>
+    </div>
+    <div class="card">
+      <video controls>
+        <source src="/videos/video3.mp4" type="video/mp4">
+      </video>
+      <p>Video 3</p>
+    </div>
+    <div class="card">
+      <video controls>
+        <source src="/videos/video4.mp4" type="video/mp4">
+      </video>
+      <p>Video 4</p>
+    </div>
+  </div>
+
+  <a href="/"><button>🏠 Back to Homepage</button></a>
+</body>
+</html>
+

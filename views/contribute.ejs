@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contribution - Ishwar Bhuvan Cha Raja</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="/public/css/style.css">
+</head>
+<body class="bg-gradient-to-br from-yellow-400 via-orange-500 to-red-600 min-h-screen text-white relative">
+
+  <div class="max-w-4xl mx-auto px-6 py-10">
+    <h1 class="text-5xl font-bold text-center mb-8 drop-shadow-lg">🙏 Prasad to Ganpati Bappa 🙏</h1>
+
+    <div class="bg-white/20 rounded-2xl shadow-lg p-6 space-y-6">
+      <p class="text-lg leading-relaxed text-white">
+        We warmly welcome your contribution towards <b>Ishwar Bhuvan Cha Raja</b> 🙌.  
+        Each devotee can offer <b>Prasad</b> by contributing any amount with love and devotion ❤️.  
+        Remember, <span class="font-bold text-yellow-300">every offering, big or small, adds divine blessings</span> ✨🌺.
+      </p>
+
+      <form id="contributionForm" method="POST" action="/submit-contribution" class="space-y-6">
+        <!-- Name -->
+        <div>
+          <label class="block text-lg mb-2">Your Name</label>
+          <input type="text" id="name" name="name" class="w-full p-3 rounded-lg text-black" placeholder="Enter your name" required>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <label class="block text-lg mb-2">Contact Number</label>
+          <input type="tel" id="contact" name="contact" class="w-full p-3 rounded-lg text-black" placeholder="Enter your 10-digit mobile number" required pattern="\d{10}" maxlength="10">
+          <p id="contactError" class="text-red-300 text-sm mt-1 hidden">Please enter a valid 10-digit number.</p>
+        </div>
+
+        <!-- Day Selection -->
+        <div>
+          <label class="block text-lg mb-2">Select Day</label>
+          <select id="day" name="day" class="w-full p-3 rounded-lg text-black" required>
+            <option value="">-- Choose a Day --</option>
+            <option>27th August</option>
+            <option>28th August</option>
+            <option>29th August</option>
+            <option>30th August</option>
+            <option>31st August (Visarjan)</option>
+          </select>
+        </div>
+
+        <!-- Time Selection -->
+        <div>
+          <label class="block text-lg mb-2">Choose Aarti Time</label>
+          <select id="time" name="time" class="w-full p-3 rounded-lg text-black" required>
+            <option value="">-- Choose Time --</option>
+            <option>27th – 30th Aug: Morning Aarti (8:00 AM)</option>
+            <option>27th – 30th Aug: Evening Aarti (8:30 PM)</option>
+            <option>31st Aug: Morning Aarti (8:15 AM)</option>
+            <option>31st Aug: Afternoon Aarti (2:30 PM)</option>
+          </select>
+        </div>
+
+        <!-- Contribution -->
+        <div>
+          <label class="block text-lg mb-2">Contribution Amount (₹)</label>
+          <input type="number" min="1" id="amount" name="amount" class="w-full p-3 rounded-lg text-black" placeholder="Enter your contribution amount" required>
+        </div>
+
+        <!-- Submit -->
+        <div class="text-center">
+          <button type="submit" class="bg-yellow-400 hover:bg-yellow-500 text-black px-8 py-3 rounded-xl font-bold shadow-lg">
+            ✅ Confirm Contribution
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="text-center mt-10">
+      <a href="/" class="bg-white/80 hover:bg-white text-red-700 px-6 py-3 rounded-xl font-bold shadow-lg">
+        ⬅ Back to Home
+      </a>
+    </div>
+  </div>
+
+  <!-- Confirmation message -->
+  <div id="confirmationMsg" class="fixed inset-0 flex items-center justify-center bg-black/50 text-white text-xl font-bold rounded-xl p-6 opacity-0 transition-opacity duration-500 pointer-events-none">
+    🙏 Thank you! Our team will contact you shortly.
+  </div>
+
+  <script>
+    const form = document.getElementById('contributionForm');
+    const contactInput = document.getElementById('contact');
+    const contactError = document.getElementById('contactError');
+    const confirmationMsg = document.getElementById('confirmationMsg');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const contactValue = contactInput.value.trim();
+      if(!/^\d{10}$/.test(contactValue)) {
+        contactError.classList.remove('hidden');
+        contactInput.focus();
+        return;
+      } else {
+        contactError.classList.add('hidden');
+      }
+
+      const formData = {
+        name: form.name.value.trim(),
+        contact: contactValue,
+        day: form.day.value,
+        time: form.time.value,
+        amount: Number(form.amount.value)
+      };
+
+      fetch('/submit-contribution', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (response.ok) {
+          // Show confirmation message
+          confirmationMsg.classList.remove('opacity-0', 'pointer-events-none');
+          confirmationMsg.classList.add('opacity-100');
+
+          // Automatically hide after 1.8 seconds
+          setTimeout(() => {
+            confirmationMsg.classList.add('opacity-0');
+            confirmationMsg.classList.remove('opacity-100');
+            confirmationMsg.classList.add('pointer-events-none');
+          }, 1800);
+
+          form.reset();
+        } else {
+          alert('Failed to submit contribution. Please try again.');
+        }
+      })
+      .catch(() => {
+        alert('Failed to submit contribution. Please try again.');
+      });
+    });
+  </script>
+
+</body>
+</html>

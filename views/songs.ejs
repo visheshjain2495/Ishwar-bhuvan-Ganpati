@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devotional Songs</title>
+  <link rel="stylesheet" href="/public/css/style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background: #ff5722;
+      color: white;
+      padding: 15px;
+      font-size: 26px;
+      font-weight: bold;
+      border-radius: 0 0 15px 15px;
+    }
+    .container {
+      margin: 30px auto;
+      max-width: 550px;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    .song {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .song:hover {
+      background: #fff3e0;
+    }
+    audio {
+      margin-top: 20px;
+      width: 100%;
+    }
+    .controls {
+      margin-top: 15px;
+    }
+    button {
+      background: #ff5722;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      margin: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #e64a19;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 25px;
+      text-decoration: none;
+      background: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    .back-btn:hover {
+      background: #388E3C;
+    }
+  </style>
+</head>
+<body>
+
+  <header>🎶 Devotional Songs 🎶</header>
+
+  <div class="container">
+    <div class="song" onclick="playSong(0)">Jai Ganesh Deva Aarti - Anuradha Paudwal</div>
+    <div class="song" onclick="playSong(1)">Sukhkarta Dukhharta - Lata Mangeshkar</div>
+    <div class="song" onclick="playSong(2)">Shendur Lal Chadhayo - Ravindra Sathe</div>
+    <div class="song" onclick="playSong(3)">Vakratunda Mahakaya - Shankar Mahadevan</div>
+    <div class="song" onclick="playSong(4)">Agle Baras Aana Hi Hoga - Shankar Mahadevan</div>
+
+    <p id="nowPlaying">Select a song to play</p>
+
+    <audio id="audioPlayer" controls>
+      <source id="audioSource" src="" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="controls">
+      <button onclick="playAudio()">▶ Play</button>
+      <button onclick="pauseAudio()">⏸ Pause</button>
+    </div>
+
+    <!-- Back to Homepage Button -->
+    <a href="/" class="back-btn">🏠 Back to Homepage</a>
+  </div>
+
+  <script>
+    const songs = [
+      { title: "Jai Ganesh Deva Aarti", artist: "Anuradha Paudwal", url: "/audios/jaiganesh.mp3" },
+      { title: "Sukhkarta Dukhharta", artist: "Lata Mangeshkar", url: "/audios/sukhkarta.mp3" },
+      { title: "Shendur Lal Chadhayo", artist: "Ravindra Sathe", url: "/audios/shendur.mp3" }, 
+      { title: "Vakratunda Mahakaya", artist: "Shankar Mahadevan", url: "/audios/Vakratunda.mp3" },
+      { title: "Agle Baras Aana Hi Hoga", artist: "Shankar Mahadevan", url: "/audios/morya.mp3" }
+    ];
+
+    const audioPlayer = document.getElementById("audioPlayer");
+    const audioSource = document.getElementById("audioSource");
+    const nowPlaying = document.getElementById("nowPlaying");
+
+    function playSong(index) {
+      audioSource.src = songs[index].url;
+      audioPlayer.load();
+      audioPlayer.play();
+      nowPlaying.innerText = "Now Playing: " + songs[index].title + " - " + songs[index].artist;
+    }
+
+    function playAudio() {
+      audioPlayer.play();
+    }
+
+    function pauseAudio() {
+      audioPlayer.pause();
+    }
+  </script>
+
+</body>
+</html>

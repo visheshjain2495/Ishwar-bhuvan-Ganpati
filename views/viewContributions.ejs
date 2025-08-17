@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Contributions</title>
+    <!-- Tailwind CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+    <div class="max-w-4xl mx-auto py-10 px-4">
+        <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Contributions</h1>
+        <div class="flex justify-center mb-6">
+            <button
+                onclick="window.location.href='/admin'"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded shadow transition duration-150"
+            >
+                Back to Admin Panel
+            </button>
+        </div>
+        <% if (contributions && contributions.length > 0) { %>
+        <div class="overflow-x-auto">
+        <table class="min-w-full border border-gray-300 rounded-lg shadow-sm">
+            <thead>
+                <tr class="bg-blue-100">
+                    <th class="px-4 py-3 border-b border-gray-300 text-left font-bold text-gray-700">Name</th>
+                    <th class="px-4 py-3 border-b border-gray-300 text-left font-bold text-gray-700">Contact</th>
+                    <th class="px-4 py-3 border-b border-gray-300 text-left font-bold text-gray-700">Day</th>
+                    <th class="px-4 py-3 border-b border-gray-300 text-left font-bold text-gray-700">Time</th>
+                    <th class="px-4 py-3 border-b border-gray-300 text-left font-bold text-gray-700">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% contributions.forEach(function(contribution, idx) { %>
+                    <tr class="<%= idx % 2 === 0 ? 'bg-white' : 'bg-gray-50' %> hover:bg-blue-50">
+                        <td class="px-4 py-3 border-b border-gray-200"><%= contribution.name %></td>
+                        <td class="px-4 py-3 border-b border-gray-200"><%= contribution.contact %></td>
+                        <td class="px-4 py-3 border-b border-gray-200"><%= contribution.day %></td>
+                        <td class="px-4 py-3 border-b border-gray-200"><%= contribution.time %></td>
+                        <td class="px-4 py-3 border-b border-gray-200"><%= contribution.amount %></td>
+                    </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        </div>
+        <% } else { %>
+            <p class="text-center text-gray-500 mt-8">No contributions found.</p>
+        <% } %>
+    </div>
+</body>
+</html>

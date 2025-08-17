@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Login</title>
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <div class="admin-panel">
+    <h1>Admin Login</h1>
+    <p>Sign in with your Google account to access the admin panel.</p>
+    <button id="googleSignIn">Sign in with Google</button>
+  </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDSZp26NDyf_1vh2N0QNSs6GOfCeVUthjE",
+      authDomain: "ishwar-bhawan-ganpati.firebaseapp.com",
+      projectId: "ishwar-bhawan-ganpati"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    document.getElementById('googleSignIn').addEventListener('click', async () => {
+      try {
+        const result = await auth.signInWithPopup(provider);
+        const idToken = await result.user.getIdToken();
+
+        // Send ID token to backend
+        const res = await fetch('/admin-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ idToken })
+        });
+
+        if (res.ok) {
+          window.location.href = '/admin';
+        } else {
+          alert('Unauthorized or login failed.');
+        }
+      } catch (err) {
+        console.error('Popup login failed:', err);
+        alert('Login failed. Make sure popups are allowed.');
+      }
+    });
+  </script>
+</body>
+</html>

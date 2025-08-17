@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add Admin Email</title>
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body>
+  <div class="admin-panel">
+    <h1>Add Admin Email</h1>
+    <form id="addAdminForm" action="/admin/add-email" method="POST" class="admin-form">
+      <label for="newAdminEmail">Admin Email:</label>
+      <input type="email" id="newAdminEmail" name="email" placeholder="Enter admin email" required />
+      <button type="submit">Add Admin</button>
+    </form>
+  </div>
+</body>
+</html>

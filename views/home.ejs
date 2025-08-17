@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ishwar Bhuvan Cha Raja</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Teko:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(to bottom right, #f97316, #ef4444, #facc15);
+      min-height: 100vh;
+    }
+    .font-teko {
+      font-family: 'Teko', sans-serif;
+    }
+  </style>
+</head>
+<body class="flex flex-col">
+
+  <!-- 🔹 Navbar -->
+  <nav class="backdrop-blur-lg bg-white/10 shadow-md sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+      <h1 class="font-teko text-3xl text-yellow-200 font-bold tracking-wide">
+        🙏 Ishwar Bhuvan Cha Raja
+      </h1>
+      <ul class="flex gap-6 text-lg font-semibold">
+        <li>
+          <a href="/" class="text-white hover:text-yellow-300 transition">🏠 Home</a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/ishwarbhuvan_cha_raja?igsh=cWtiMmFxOGwycnR1" target="_blank" class="text-white hover:text-pink-400 transition">📷 Instagram</a>
+        </li>
+        <li>
+          <a href="/contribute" class="text-white hover:text-green-400 transition">🙏 Contribute</a>
+        </li>
+        <li>
+          <a href="/gallery" class="text-white hover:text-blue-400 transition">🖼 Gallery</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- 🔹 Hero Section -->
+  <section class="flex-1 flex flex-col items-center justify-center text-center px-6">
+    <h2 class="font-teko text-6xl text-white font-bold drop-shadow-lg">
+      ISHWAR BHUVAN CHA RAJA 🙏
+    </h2>
+    <p class="text-yellow-100 mt-4 max-w-2xl text-lg">
+      Join us in the grand celebration of Ganesh Chaturthi at <b>Building Ground, Ishwar Bhuvan, Malad East</b>.<br>
+      Dates: <b>27th August – 31st August</b>
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="mt-8 flex gap-4">
+      <a href="/songs" class="bg-yellow-400 hover:bg-yellow-500 text-gray-900 px-6 py-3 rounded-xl font-semibold text-lg shadow-lg transition">
+        🎧 Listen Songs
+      </a>
+      <a href="/updates" class="bg-green-400 hover:bg-green-500 text-gray-900 px-6 py-3 rounded-xl font-semibold text-lg shadow-lg transition">
+        📅 View Updates
+      </a>
+    </div>
+  </section>
+
+  <!-- 🔹 Footer -->
+  <footer class="bg-black/30 text-yellow-100 py-4 text-center text-sm">
+    © 2025 Ishwar Bhuvan Cha Raja | Made with ❤️ for Bappa
+  </footer>
+</body>
+</html>
